@@ -3,11 +3,17 @@ TBC is a command-line client for [Txtban](https://github.com/thehxdev/txtban) se
 
 
 ## Build
-You have to install go compiler. Then run:
+You have to install go compiler gnu make. Then run:
 ```bash
-go build -ldflags='-s' .
+make
 ```
-This command will produce `tbc` executable that you can use.
+This command will build `tbc`.
+
+### Install
+```bash
+make install PREFIX=/usr/local/bin
+```
+Command above will install `tbc` executable to the directory specified by `PREFIX` variable.
 
 
 ## Usage
