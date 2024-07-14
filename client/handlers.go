@@ -24,6 +24,10 @@ func (u *User) UseraddHandler(password string) error {
 		return err
 	}
 
+	if stat := resp.StatusCode(); stat != 200 {
+		return fmt.Errorf(string(resp.Body()))
+	}
+
 	err = json.Unmarshal(resp.Body(), &u.Conf.UInfo)
 	if err != nil {
 		return err
