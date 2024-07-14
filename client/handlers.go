@@ -28,6 +28,7 @@ func (u *User) UseraddHandler(password string) error {
 	if err != nil {
 		return err
 	}
+    u.Conf.UInfo["password"] = password
 
 	jdata, err := json.MarshalIndent(u.Conf, "", "    ")
 	if err != nil {

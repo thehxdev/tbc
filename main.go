@@ -24,10 +24,13 @@ func main() {
 	configureCmdFlags()
 
 	args := os.Args
+    if len(args) < 2 {
+		usage()
+    }
+
 	subcmd := args[1]
 	if subcmd == "help" {
 		usage()
-		os.Exit(0)
 	}
 
 	u, err := client.Init(conf)
@@ -63,8 +66,12 @@ func main() {
 
 	case "rename":
 		err = u.RenameHandler(name, txtid)
+
 	case "mv":
 		d, err = u.MvHandler(txtid)
+
+    default:
+        usage()
 	}
 
 	if err != nil {
@@ -113,6 +120,8 @@ func usage() {
     useradd (Create new user)
         -password (New account password)
 
+    userdel (Delete account)
+
     tee (Create a new txt)
         -name (Name of new txt)
         -path (File path to read txt content)
@@ -140,4 +149,5 @@ Env Vars:
 `
 
 	fmt.Println(msg)
+    os.Exit(1)
 }
