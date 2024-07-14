@@ -1,9 +1,9 @@
 # TBC
-TBC is a command-line client for [Txtban](https://github.com/thehxdev/txtban) server application.
+TBC is a CLI client for [Txtban](https://github.com/thehxdev/txtban) services.
 
 
 ## Build
-You have to install go compiler gnu make. Then run:
+You have to install go compiler GNU make. Then run:
 ```bash
 make
 ```
