@@ -25,16 +25,15 @@ func main() {
 
 	args := os.Args
 	subcmd := args[1]
-    if subcmd == "help" {
-        usage()
-        os.Exit(0)
-    }
+	if subcmd == "help" {
+		usage()
+		os.Exit(0)
+	}
 
 	u, err := client.Init(conf)
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	err = fs[subcmd].Parse(args[2:])
 	if err != nil {
@@ -58,7 +57,7 @@ func main() {
 
 	case "rm":
 		err = u.RmHandler(txtid)
-	
+
 	case "chtxt":
 		err = u.ChtxtHandler(txtid, path)
 
@@ -109,9 +108,8 @@ func configureCmdFlags() {
 	fs["rename"].StringVar(&name, "name", "", "Txt name")
 }
 
-
 func usage() {
-    msg := `tbc Usage:
+	msg := `tbc Usage:
     useradd (Create new user)
         -password (New account password)
 
@@ -141,5 +139,5 @@ Env Vars:
     TBC_CONF (Path to config.json file)
 `
 
-    fmt.Println(msg)
+	fmt.Println(msg)
 }

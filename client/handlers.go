@@ -111,7 +111,6 @@ func (u *User) TeeHandler(name, path string) ([]byte, error) {
 	return resp.Body(), nil
 }
 
-
 func (u *User) RmHandler(txtid string) error {
 	if txtid == "" {
 		return errors.New("txt id could not be empty")
@@ -160,7 +159,6 @@ func (u *User) MvHandler(txtid string) ([]byte, error) {
 	return resp.Body(), nil
 }
 
-
 func (u *User) ChtxtHandler(txtid, path string) error {
 	if txtid == "" {
 		return errors.New("txt id could not be empty")
@@ -201,7 +199,7 @@ func (u *User) RenameHandler(name, txtid string) error {
 
 	resp, err := c.R().
 		SetQueryParam("txtid", txtid).
-		SetBody(map[string]string{ "name": name }).
+		SetBody(map[string]string{"name": name}).
 		SetHeader("Authorization", uinfo["authKey"]).
 		Put("/rename")
 
