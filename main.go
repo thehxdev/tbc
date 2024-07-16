@@ -138,7 +138,6 @@ func usage() {
     rename (Change a txt name)
         -id (Txt id to change name)
         -name (Txt new name)
-    
 
     mv (Change a txt id)
         -id (Txt id to change id)
