@@ -24,9 +24,9 @@ func main() {
 	configureCmdFlags()
 
 	args := os.Args
-    if len(args) < 2 {
+	if len(args) < 2 {
 		usage()
-    }
+	}
 
 	subcmd := args[1]
 	if subcmd == "help" {
@@ -70,8 +70,8 @@ func main() {
 	case "mv":
 		d, err = u.MvHandler(txtid)
 
-    default:
-        usage()
+	default:
+		usage()
 	}
 
 	if err != nil {
@@ -148,5 +148,5 @@ Env Vars:
 `
 
 	fmt.Println(msg)
-    os.Exit(1)
+	os.Exit(1)
 }

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -24,7 +25,7 @@ func (u *User) UseraddHandler(password string) error {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return fmt.Errorf(string(resp.Body()))
 	}
 
@@ -32,7 +33,7 @@ func (u *User) UseraddHandler(password string) error {
 	if err != nil {
 		return err
 	}
-    u.Conf.UInfo["password"] = password
+	u.Conf.UInfo["password"] = password
 
 	jdata, err := json.MarshalIndent(u.Conf, "", "    ")
 	if err != nil {
@@ -60,7 +61,7 @@ func (u *User) UserdelHandler() error {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return fmt.Errorf(string(resp.Body()))
 	}
 
@@ -79,7 +80,7 @@ func (u *User) LsHandler() ([]byte, error) {
 		return nil, err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return nil, errors.New(string(resp.Body()))
 	}
 
@@ -109,7 +110,7 @@ func (u *User) TeeHandler(name, path string) ([]byte, error) {
 		return nil, err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return nil, errors.New(string(resp.Body()))
 	}
 
@@ -133,7 +134,7 @@ func (u *User) RmHandler(txtid string) error {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return errors.New(string(resp.Body()))
 	}
 
@@ -157,7 +158,7 @@ func (u *User) MvHandler(txtid string) ([]byte, error) {
 		return nil, err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return nil, errors.New(string(resp.Body()))
 	}
 
@@ -181,13 +182,13 @@ func (u *User) ChtxtHandler(txtid, path string) error {
 		SetQueryParam("txtid", txtid).
 		SetHeader("Authorization", uinfo["authKey"]).
 		SetBody(data).
-		Put("/tee")
+		Put("/chtxt")
 
 	if err != nil {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return errors.New(string(resp.Body()))
 	}
 
@@ -212,7 +213,7 @@ func (u *User) RenameHandler(name, txtid string) error {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != 200 {
+	if stat := resp.StatusCode(); stat != http.StatusOK {
 		return errors.New(string(resp.Body()))
 	}
 
