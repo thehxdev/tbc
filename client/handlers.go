@@ -25,7 +25,7 @@ func (u *User) UseraddHandler(password string) error {
 		return err
 	}
 
-	if stat := resp.StatusCode(); stat != http.StatusOK {
+	if stat := resp.StatusCode(); stat != http.StatusCreated {
 		return fmt.Errorf(string(resp.Body()))
 	}
 
@@ -110,7 +110,7 @@ func (u *User) TeeHandler(name, path string) ([]byte, error) {
 		return nil, err
 	}
 
-	if stat := resp.StatusCode(); stat != http.StatusOK {
+	if stat := resp.StatusCode(); stat != http.StatusCreated {
 		return nil, errors.New(string(resp.Body()))
 	}
 
